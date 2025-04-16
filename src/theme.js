@@ -5,6 +5,7 @@ const theme = {
     textTertiary: "white",
     primary: "#0366d6",
     appBar: "#24292e",
+    error: "#d73a4a",
   },
   fontSizes: {
     body: 14,

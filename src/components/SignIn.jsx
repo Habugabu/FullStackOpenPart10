@@ -2,7 +2,14 @@ import Text from "./Text";
 import { TextInput, View, Pressable, StyleSheet } from "react-native";
 import { useFormik } from "formik";
 
+import * as yup from "yup";
+
 import theme from "../theme";
+
+const validationSchema = yup.object().shape({
+  username: yup.string().required("Username required"),
+  password: yup.string().required("Password required"),
+});
 
 const styles = StyleSheet.create({
   container: {
@@ -29,6 +36,9 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     fontSize: theme.fontSizes.subheading,
   },
+  invalid: {
+    borderColor: theme.colors.error,
+  },
 });
 
 const initialValues = {
@@ -46,24 +56,45 @@ const SignIn = () => {
 const SignInForm = ({ onSubmit }) => {
   const formik = useFormik({
     initialValues,
+    validationSchema,
     onSubmit,
   });
   return (
     <View style={styles.container}>
       <TextInput
-        style={styles.inputBox}
+        style={[
+          styles.inputBox,
+          formik.touched.username && formik.errors.username
+            ? styles.invalid
+            : {},
+        ]}
         placeholder="Username"
         value={formik.values.username}
         onChangeText={formik.handleChange("username")}
       />
+      {formik.touched.username && formik.errors.username && (
+        <Text style={{ color: theme.colors.error }}>
+          {formik.errors.username}
+        </Text>
+      )}
 
       <TextInput
-        style={styles.inputBox}
+        style={[
+          styles.inputBox,
+          formik.touched.password && formik.errors.password
+            ? styles.invalid
+            : {},
+        ]}
         secureTextEntry
         placeholder="Password"
         value={formik.values.password}
         onChangeText={formik.handleChange("password")}
       />
+      {formik.touched.password && formik.errors.password && (
+        <Text style={{ color: theme.colors.error }}>
+          {formik.errors.password}
+        </Text>
+      )}
 
       <Pressable style={styles.button} onPress={formik.handleSubmit}>
         <Text
