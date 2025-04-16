@@ -14,8 +14,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     display: "flex",
     flex: 1,
-    padding: 10,
-    columnGap: 10,
+    padding: 20,
+    columnGap: 15,
   },
 });
 

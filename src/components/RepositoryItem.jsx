@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "space-evenly",
     flexDirection: "column",
-    flexWrap: "wrap",
+    flexWrap: "nowrap",
     rowGap: 20,
     columnGap: 20,
     padding: 20,
