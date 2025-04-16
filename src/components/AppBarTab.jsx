@@ -9,7 +9,11 @@ const AppBarTab = ({ text, link }) => {
     <View>
       <Pressable>
         <Link to={link}>
-          <Text fontSize={"appBar"} color={"textAppBar"}>
+          <Text
+            fontSize={"subheading"}
+            color={"textTertiary"}
+            fontWeight={"bold"}
+          >
             {text}
           </Text>
         </Link>
