@@ -32,6 +32,10 @@ export default defineConfig([
 
       parser: babelParser,
     },
+    env: {
+      browser: "true",
+      node: "true",
+    },
 
     settings: {
       react: {
