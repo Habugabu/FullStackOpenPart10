@@ -5,7 +5,7 @@ import theme from "../theme";
 import { ScrollView } from "react-native";
 
 import useSignOut from "../hooks/useSignOut";
-import useMe from "../hooks/useMe";
+import useCurrentUser from "../hooks/useCurrentUser";
 
 const styles = StyleSheet.create({
   container: {
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
 });
 
 const AppBar = () => {
-  const username = useMe();
+  const username = useCurrentUser(false);
   const [signOut] = useSignOut();
   const handleSignOut = async (event) => {
     event.preventDefault();
@@ -41,6 +41,7 @@ const AppBar = () => {
         ) : (
           <>
             <AppBarTab text={"Create review"} link={"/review"} />
+            <AppBarTab text={"My reviews"} link={"/myreviews"} />
             <AppBarTab text={"Sign out"} onPress={handleSignOut} />
           </>
         )}
