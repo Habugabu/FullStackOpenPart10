@@ -25,6 +25,29 @@ export const GET_REPOSITORY = gql`
   ${REPO_BASIC_FRAGMENT}
 `;
 
+export const GET_REPO_REVIEWS = gql`
+  query GetRepository($id: ID!) {
+    repository(id: $id) {
+      id
+      fullName
+      reviews {
+        edges {
+          node {
+            id
+            text
+            rating
+            createdAt
+            user {
+              id
+              username
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const ME = gql`
   query {
     me {
