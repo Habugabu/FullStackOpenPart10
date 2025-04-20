@@ -1,8 +1,6 @@
-import Constants from "expo-constants";
 import { StyleSheet, View } from "react-native";
 import { Route, Routes, Navigate } from "react-router-native";
 import RepositoryList from "./RepositoryList";
-import Text from "./Text";
 import AppBar from "./AppBar";
 import SignIn from "./SignIn";
 

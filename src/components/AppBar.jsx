@@ -4,6 +4,9 @@ import AppBarTab from "./AppBarTab";
 import theme from "../theme";
 import { ScrollView } from "react-native";
 
+import useSignOut from "../hooks/useSignOut";
+import useMe from "../hooks/useMe";
+
 const styles = StyleSheet.create({
   container: {
     paddingTop: Constants.statusBarHeight,
@@ -20,11 +23,21 @@ const styles = StyleSheet.create({
 });
 
 const AppBar = () => {
+  const username = useMe();
+  const [signOut] = useSignOut();
+  const handleSignOut = async (event) => {
+    event.preventDefault();
+    await signOut();
+  };
   return (
     <View style={styles.container}>
       <ScrollView horizontal contentContainerStyle={styles.scroll}>
         <AppBarTab text={"Repositories"} link={"/"} />
-        <AppBarTab text={"Sign in"} link={"/login"} />
+        {!username ? (
+          <AppBarTab text={"Sign in"} link={"/login"} />
+        ) : (
+          <AppBarTab text={"Sign out"} onPress={handleSignOut} />
+        )}
       </ScrollView>
     </View>
   );
