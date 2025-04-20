@@ -65,7 +65,7 @@ const SignIn = () => {
   return <SignInForm onSubmit={onSubmit} />;
 };
 
-const SignInForm = ({ onSubmit }) => {
+export const SignInForm = ({ onSubmit }) => {
   const formik = useFormik({
     initialValues,
     validationSchema,
